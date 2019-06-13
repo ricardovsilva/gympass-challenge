@@ -26,3 +26,4 @@ class TestLap:
 
     def test__init__given_average_speed_string__it_should_be_of_type_float(self, lap):
         assert_that(lap.average_speed).is_type_of(float)
+        
