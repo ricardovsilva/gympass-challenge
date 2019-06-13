@@ -74,4 +74,19 @@ class TestRace:
     def test__get_grid_positions__with_complete_race__last_position_should_have_three_laps_completed(self, complete_race):
         assert_that(complete_race.get_grid_positions()[-1].laps).is_length(3)
 
+    def test__get_grid_positions__with_complete_race__ensure_that_all_positions_are_correct(self, complete_race):
+        target = complete_race.get_grid_positions()
+        assert_that(target[0]).has_name('F.MASSA')
+        assert_that(target[0]).has_number('038')
+        assert_that(target[1]).has_name('K.RAIKKONEN')
+        assert_that(target[1]).has_number('002')
+        assert_that(target[2]).has_name('R.BARRICHELLO')
+        assert_that(target[2]).has_number('033')
+        assert_that(target[3]).has_name('M.WEBBER')
+        assert_that(target[3]).has_number('023')
+        assert_that(target[4]).has_name('F.ALONSO')
+        assert_that(target[4]).has_number('015')
+        assert_that(target[5]).has_name('S.VETTEL')
+        assert_that(target[5]).has_number('011')
+
     

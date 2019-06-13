@@ -28,7 +28,7 @@ class Pilot:
         return round(mean([lap.average_speed for lap in self.laps]), 3)
 
     def get_elapsed_time(self):
-        return integer_to_timestr(sum([lap.laptime for lap in self.laps]))
+        return integer_to_timestr(self.laps[-1].hour_of_lap - self.laps[0].begin_of_lap)
 
     def __eq__(self, other):
         return self.number == other.number and self.name == other.name
