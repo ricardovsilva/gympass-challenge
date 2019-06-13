@@ -11,7 +11,7 @@ class TestPilot:
 
     def test__init__given_string_with_number_and_name__should_set_number_and_name(self, pilot):
         assert_that(pilot).has_number(999)
-        assert_that(pilot).has_name('F. FOO')
+        assert_that(pilot).has_name('F.FOO')
 
     def test__init__given_two_pilots_with_same_number_and_name__they_should_be_equals(self, pilot):
         assert_that(pilot).is_equal_to(Pilot('999 - F.FOO'))
@@ -36,7 +36,7 @@ class TestPilot:
         pilot.add_lap(Lap('23:51:14.216', '1:02.769', '3', '44,334'))
         pilot.add_lap(Lap('23:51:14.216', '1:02.787', '4', '44,321'))
 
-        assert_that(pilot.get_best_lap()).has_number('4')
+        assert_that(pilot.get_best_lap()).has_number(3)
 
     def test__get_average_speed__should_return_average_speed_of_all_laps(self, pilot):
         pilot.add_lap(Lap('23:49:10.858', '1:04.352', '1', '43,243'))
@@ -54,6 +54,6 @@ class TestPilot:
             Lap('23:51:14.216', '1:02.787', '4', '44,321')
         ]
 
-        [pilot.add(lap) for lap in target]
+        [pilot.add_lap(lap) for lap in target]
         assert_that(pilot.get_elapsed_time()).is_equal_to('4:11.578')
 
