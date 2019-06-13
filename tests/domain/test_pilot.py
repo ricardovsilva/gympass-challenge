@@ -10,7 +10,7 @@ class TestPilot:
         return Pilot('999 - F.FOO')
 
     def test__init__given_string_with_number_and_name__should_set_number_and_name(self, pilot):
-        assert_that(pilot).has_number(999)
+        assert_that(pilot).has_number('999')
         assert_that(pilot).has_name('F.FOO')
 
     def test__init__given_two_pilots_with_same_number_and_name__they_should_be_equals(self, pilot):

@@ -7,8 +7,13 @@ from src.utilities.time_utilities import integer_to_timestr
 class Pilot:
     def __init__(self, number_and_name):
         self.laps = []
-        self.number = int(number_and_name.split(' ')[0])
-        self.name = number_and_name.split(' ')[-1]
+        if type(number_and_name) is str:
+            self.number = number_and_name.split(' ')[0]
+            self.name = number_and_name.split(' ')[-1]
+        elif type(number_and_name) is list:
+            self.number, self.name = number_and_name
+        else:
+            raise ValueError('number_and_name must be a string or a list')
 
     def add_lap(self, lap):
         if type(lap) is not Lap:

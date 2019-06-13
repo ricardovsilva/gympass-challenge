@@ -37,30 +37,33 @@ class TestRace:
         complete_race.add_lap_from_text('23:54:57.757 011 – S.VETTEL 3 1:18.097 35,633')
         return complete_race
  
-    def test__process_lap_text__lap_with_new_pilot__should_add_pilot(self, race):
-        race.add_lap('23:49:08.277 038 – F.MASSA 1 1:02.852 44,275')
+    def test__add_lap_from_text__lap_with_new_pilot__should_add_pilot(self, race):
+        race.add_lap_from_text('23:49:08.277 038 – F.MASSA 1 1:02.852 44,275')
         assert_that(race.pilots).is_length(1)
         assert_that(race.pilots[0].laps).is_length(1)
 
-    def test__process_lap_text__lap_of_pilot_already_added__should_keep_pilot_and_add_lap(self, race):
-        race.add_lap('23:49:08.277 038 – F.MASSA 1 1:02.852 44,275')
-        race.add_lap('23:50:11.447 038 – F.MASSA 2 1:03.170 44,053')
+    def test__add_lap_from_text__lap_of_pilot_already_added__should_keep_pilot_and_add_lap(self, race):
+        race.add_lap_from_text('23:49:08.277 038 – F.MASSA 1 1:02.852 44,275')
+        race.add_lap_from_text('23:50:11.447 038 – F.MASSA 2 1:03.170 44,053')
         assert_that(race.pilots).is_length(1)
         assert_that(race.pilots[0].laps).is_length(2)
 
-    def test__process_lap_text__laps_of_two_pilots__should_add_both_pilots(self, race):
-        race.add_lap('23:49:08.277 038 – F.MASSA 1 1:02.852 44,275')
-        race.add_lap('23:49:10.858 033 – R.BARRICHELLO 1 1:04.352 43,243')
+    def test__add_lap_from_text__laps_of_two_pilots__should_add_both_pilots(self, race):
+        race.add_lap_from_text('23:49:08.277 038 – F.MASSA 1 1:02.852 44,275')
+        race.add_lap_from_text('23:49:10.858 033 – R.BARRICHELLO 1 1:04.352 43,243')
         assert_that(race.pilots).is_length(2)
-        assert_that(race.pilots).extracting('laps').is_length(1)
+        assert_that(race.pilots[0].laps).is_length(1)
+        assert_that(race.pilots[1].laps).is_length(1)
 
     def test__get_grid_positions__with_complete_race__should_return_f_massa_as_first(self, complete_race):
-        target = complete_race.get_grid_positions()[0].pilot
-        assert_that(target).is_equal_to(Pilot('038 - F.MASSA'))
+        target = complete_race.get_grid_positions()[0]
+        assert_that(target).has_number('038')
+        assert_that(target).has_name('F.MASSA')
 
     def test__get_grid_positions__with_complete_race__should_return_s_vettel_massa_as_last(self, complete_race):
-        target = complete_race.get_grid_positions()[-1].pilot
-        assert_that(target).is_equal_to(Pilot('011 - S.VETTEL'))
+        target = complete_race.get_grid_positions()[-1]
+        assert_that(target).has_number('011')
+        assert_that(target).has_name('S.VETTEL')
 
     def test__get_grid_positions__with_complete_race__should_have_six_pilots(self, complete_race):
         assert_that(complete_race.get_grid_positions()).is_length(6)
