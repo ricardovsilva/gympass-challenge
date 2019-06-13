@@ -12,4 +12,7 @@ class Pilot:
     def get_average_speed(self):
         pass
 
+    def get_elapsed_time(self):
+        pass
+
     

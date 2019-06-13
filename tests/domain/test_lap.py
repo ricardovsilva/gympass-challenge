@@ -15,14 +15,17 @@ class TestLap:
             'average_speed': '44,275'
         })
 
-    def test__init__given_string_hour__it_should_be_of_type_time(self, lap):
-        assert_that(lap.hour_of_lap).is_type_of(time)
+    def test__init__given_string_hour__it_should_be_of_type_int(self, lap):
+        assert_that(lap.hour_of_lap).is_type_of(int)
 
     def test__init__given_string_number__it_should_be_of_type_integer(self, lap):
         assert_that(lap.number).is_type_of(int)
 
-    def test__init__given_laptime_string__it_should_be_of_type_time(self, lap):
-        assert_that(lap.laptime).is_type_of(time)
+    def test__init__given_laptime_string__it_should_be_of_type_int(self, lap):
+        assert_that(lap.laptime).is_type_of(int)
+
+    def test__init__given_laptime_string__it_should_be_represented_as_milliseconds(self, lap):
+        assert_that(lap).has_laptime(62852)
 
     def test__init__given_average_speed_string__it_should_be_of_type_float(self, lap):
         assert_that(lap.average_speed).is_type_of(float)

@@ -45,3 +45,15 @@ class TestPilot:
         pilot.add_lap(Lap('23:52:22.586', '1:04.010', '4', '43,474'))
 
         assert_that(pilot.get_average_speed()).is_equal_to(43.468)
+    
+    def test__get_elapsed_time__should_return_sum_of_laptimes(self, pilot):
+        target = [
+            Lap('23:49:08.277', '1:02.852', '1', '44,275'),
+            Lap('23:50:11.447', '1:03.170', '2', '44,053'),
+            Lap('23:51:14.216', '1:02.769', '3', '44,334'),
+            Lap('23:51:14.216', '1:02.787', '4', '44,321')
+        ]
+
+        [pilot.add(lap) for lap in target]
+        assert_that(pilot.get_elapsed_time()).is_equal_to('4:11.578')
+
