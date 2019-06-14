@@ -1,5 +1,6 @@
 from src.domain.lap import Lap
 from src.domain.pilot import Pilot
+from src.utilities.time_utilities import integer_to_timestr
 
 class Race:
     def __init__(self):
@@ -27,3 +28,7 @@ class Race:
     def get_grid_positions(self):
         pilots_ordered = sorted(self.pilots, key=lambda pilot: pilot.get_elapsed_time())
         return pilots_ordered
+
+    def get_best_lap(self):
+        best_lap_pilot = sorted(self.pilots, key=lambda pilot: pilot.get_best_lap().laptime)[0]
+        return f"{best_lap_pilot.name} - {integer_to_timestr(best_lap_pilot.get_best_lap().laptime)}"
