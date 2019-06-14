@@ -1,5 +1,6 @@
 from src.domain.lap import Lap
 from src.domain.pilot import Pilot
+from src.domain.grid_position import GridPosition
 from src.utilities.time_utilities import integer_to_timestr
 
 class Race:
@@ -24,10 +25,10 @@ class Race:
         
         pilot.add_lap(lap)
 
-
     def get_grid_positions(self):
         pilots_ordered = sorted(self.pilots, key=lambda pilot: pilot.get_elapsed_time())
-        return pilots_ordered
+        first_pilot_time = pilots_ordered[0].get_elapsed_time()
+        return [GridPosition(i + 1, pilot, first_pilot_time) for i, pilot in enumerate(pilots_ordered)] 
 
     def get_best_lap(self):
         best_lap_pilot = sorted(self.pilots, key=lambda pilot: pilot.get_best_lap().laptime)[0]

@@ -55,5 +55,5 @@ class TestPilot:
         ]
 
         [pilot.add_lap(lap) for lap in target]
-        assert_that(pilot.get_elapsed_time()).is_equal_to('4:11.578')
+        assert_that(pilot.get_elapsed_time()).is_equal_to(251578)
 

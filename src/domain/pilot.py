@@ -2,7 +2,6 @@ from operator import attrgetter
 from statistics import mean
 
 from src.domain.lap import Lap
-from src.utilities.time_utilities import integer_to_timestr
 
 class Pilot:
     def __init__(self, number_and_name):
@@ -28,7 +27,10 @@ class Pilot:
         return round(mean([lap.average_speed for lap in self.laps]), 3)
 
     def get_elapsed_time(self):
-        return integer_to_timestr(self.laps[-1].hour_of_lap - self.laps[0].begin_of_lap)
+        return self.laps[-1].hour_of_lap - self.laps[0].begin_of_lap
+
+    def get_completed_laps(self):
+        return len(self.laps)
 
     def __eq__(self, other):
         return self.number == other.number and self.name == other.name

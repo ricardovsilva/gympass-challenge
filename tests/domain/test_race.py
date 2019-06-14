@@ -57,36 +57,34 @@ class TestRace:
 
     def test__get_grid_positions__with_complete_race__should_return_f_massa_as_first(self, complete_race):
         target = complete_race.get_grid_positions()[0]
-        assert_that(target).has_number('038')
-        assert_that(target).has_name('F.MASSA')
+        assert_that(target.pilot).has_number('038')
+        assert_that(target.pilot).has_name('F.MASSA')
 
     def test__get_grid_positions__with_complete_race__should_return_s_vettel_massa_as_last(self, complete_race):
         target = complete_race.get_grid_positions()[-1]
-        assert_that(target).has_number('011')
-        assert_that(target).has_name('S.VETTEL')
+        assert_that(target.pilot).has_number('011')
+        assert_that(target.pilot).has_name('S.VETTEL')
 
     def test__get_grid_positions__with_complete_race__should_have_six_pilots(self, complete_race):
         assert_that(complete_race.get_grid_positions()).is_length(6)
 
     def test__get_grid_positions__with_complete_race__first_position_should_have_four_laps_completed(self, complete_race):
-        assert_that(complete_race.get_grid_positions()[0].laps).is_length(4)
+        assert_that(complete_race.get_grid_positions()[0].pilot.laps).is_length(4)
 
     def test__get_grid_positions__with_complete_race__last_position_should_have_three_laps_completed(self, complete_race):
-        assert_that(complete_race.get_grid_positions()[-1].laps).is_length(3)
+        assert_that(complete_race.get_grid_positions()[-1].pilot.laps).is_length(3)
 
     def test__get_grid_positions__with_complete_race__ensure_that_all_positions_are_correct(self, complete_race):
         target = complete_race.get_grid_positions()
-        assert_that(target[0]).has_name('F.MASSA')
-        assert_that(target[0]).has_number('038')
-        assert_that(target[1]).has_name('K.RAIKKONEN')
-        assert_that(target[1]).has_number('002')
-        assert_that(target[2]).has_name('R.BARRICHELLO')
-        assert_that(target[2]).has_number('033')
-        assert_that(target[3]).has_name('M.WEBBER')
-        assert_that(target[3]).has_number('023')
-        assert_that(target[4]).has_name('F.ALONSO')
-        assert_that(target[4]).has_number('015')
-        assert_that(target[5]).has_name('S.VETTEL')
-        assert_that(target[5]).has_number('011')
-
-    
+        assert_that(target[0].pilot).has_name('F.MASSA')
+        assert_that(target[0].pilot).has_number('038')
+        assert_that(target[1].pilot).has_name('K.RAIKKONEN')
+        assert_that(target[1].pilot).has_number('002')
+        assert_that(target[2].pilot).has_name('R.BARRICHELLO')
+        assert_that(target[2].pilot).has_number('033')
+        assert_that(target[3].pilot).has_name('M.WEBBER')
+        assert_that(target[3].pilot).has_number('023')
+        assert_that(target[4].pilot).has_name('F.ALONSO')
+        assert_that(target[4].pilot).has_number('015')
+        assert_that(target[5].pilot).has_name('S.VETTEL')
+        assert_that(target[5].pilot).has_number('011')
