@@ -1,6 +1,4 @@
-from datetime import time
-
-from assertpy import assert_that, fail
+from assertpy import assert_that
 import pytest
 
 from src.domain.lap import Lap
@@ -18,7 +16,7 @@ class TestLap:
     def test__init__given_string_hour__it_should_be_of_type_int(self, lap):
         assert_that(lap.hour_of_lap).is_type_of(int)
 
-    def test__init__given_string_number__it_should_be_of_type_integer(self, lap):
+    def test__init__given_string_number__it_should_be_of_type_int(self, lap):
         assert_that(lap.number).is_type_of(int)
 
     def test__init__given_laptime_string__it_should_be_of_type_int(self, lap):
