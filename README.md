@@ -5,8 +5,8 @@ The solution is a simple console application written in Python. It analyzes a ra
 
 ## Requirements
 This solution was written and tested with Python 3.7.0, so Python 3.7.0 is mandatory.
-Is also possible to run this solution using docker, so is not necessary to install nothing, only Docker.
-To simplify the test process I used the libs [PyTest](https://pytest.org) and [AssertPy](https://github.com/ActivisionGameScience/assertpy). Those are the only external libs in the entire project and was used only to simplify the TDD process. You only need to install them if you intend to run the unit tests (strongly recommended).
+Is also possible to run this solution using docker, it is not necessary to install anything, only Docker.
+To simplify the test process I used the libs [pytest](https://pytest.org) and [assertpy](https://github.com/ActivisionGameScience/assertpy). Those are the only external libs in the entire project and was used only to simplify the TDD process. You only need to install them if you intend to run the unit tests (strongly recommended).
 
 ### Running the tests (optional)
 This step is totally optional but strongly recommended. You need to install the external dependencies:  
